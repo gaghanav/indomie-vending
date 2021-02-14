@@ -26,11 +26,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Page<Transaction> getTransactionById(Pageable pageable, String id) {
-        return transactionRepository.findAllById(pageable, id);
+        return transactionRepository.findAllById(id, pageable);
     }
 
     @Override
     public Page<Transaction> getTransactionByDate(Pageable pageable, Date date) {
-        return transactionRepository.findAllByTrxDate(pageable, date);
+        return transactionRepository.findAllByTrxDate(date, pageable);
     }
 }

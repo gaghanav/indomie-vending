@@ -39,6 +39,6 @@ public class IndomieServiceImpl implements IndomieService {
 
     @Override
     public Page<Indomie> getIndomieByKeyword(Pageable pageable, String search) {
-        return indomieRepository.findAllByName(pageable, search);
+        return indomieRepository.findAllByNameContains(search, pageable);
     }
 }

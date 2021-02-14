@@ -39,6 +39,6 @@ public class TopingServiceImpl implements TopingsService {
 
     @Override
     public Page<Topings> getTopingsByKeyword(Pageable pageable, String keyword) {
-        return topingRepository.findAllByName(pageable, keyword);
+        return topingRepository.findAllByNameContains(keyword, pageable);
     }
 }

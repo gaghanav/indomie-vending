@@ -1,5 +1,6 @@
 package com.valentino.indomie.entitys;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -17,6 +18,8 @@ public class Transaction {
     @GeneratedValue(generator = "uuid", strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid", strategy = "uuid")
     private String id;
+    @ManyToOne
+    @JoinColumn(name = "indomie_id")
     private Indomie indomie;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "transactions",
@@ -24,6 +27,8 @@ public class Transaction {
         inverseJoinColumns = @JoinColumn(name = "toping_id"))
     private List<Topings> topingsList;
     private Integer total;
+    @Column(name = "trx_date")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date trxDate;
 
     public Transaction(Indomie indomie, List<Topings> topingsList, Integer total, Date trxDate) {

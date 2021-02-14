@@ -23,6 +23,8 @@ public class Indomie {
     private Integer prices;
     private String descriptions;
 
+
+
     public Indomie(String name, Types type, Integer prices, String descriptions) {
         this.name = name;
         this.type = type;

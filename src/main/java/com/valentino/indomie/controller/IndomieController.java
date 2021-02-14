@@ -24,11 +24,11 @@ public class IndomieController {
     @GetMapping("/indomies")
     public Page<Indomie> getAllIndomie(@RequestParam(name = "page") Integer page, @RequestParam(name = "size") Integer size){
 //        indomieService.
-        return indomieService.getAllIndomie(PageRequest.of(page, size));
+        return indomieService.getAllIndomie(PageRequest.of(page-1, size));
     }
-    @GetMapping("indomie_search")
+    @GetMapping("/indomie_search")
     public Page<Indomie> searchIndomie(@RequestParam(name = "page") Integer page, @RequestParam(name = "size") Integer size, @RequestParam(name = "keyword") String keyword){
-        return indomieService.getIndomieByKeyword(PageRequest.of(page,size), keyword);
+        return indomieService.getIndomieByKeyword(PageRequest.of(page-1,size), keyword);
     }
     @DeleteMapping("/indomie_delete")
     public void deleteIndomie(@RequestParam(name = "id") String id){

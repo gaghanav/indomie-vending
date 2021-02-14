@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TopingRepository extends JpaRepository<Topings, String> {
 
-    Page<Topings> findAllByName(Pageable pageable, String keyword);
+    Page<Topings> findAllByNameContains(String keyword, Pageable pageable);
 }

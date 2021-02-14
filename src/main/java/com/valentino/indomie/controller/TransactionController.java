@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+
 @RestController
 public class TransactionController {
     @Autowired
@@ -14,11 +16,15 @@ public class TransactionController {
 
     @GetMapping("/transactions")
     public Page<Transaction> getAllTransactions(@RequestParam(name = "page") Integer page, @RequestParam(name = "size") Integer size){
-        return transactionService.getAllTransactions(PageRequest.of(page, size));
+        return transactionService.getAllTransactions(PageRequest.of(page-1, size));
     }
     @GetMapping("/transactions_search")
     public Page<Transaction> getAllTransactionsById(@RequestParam(name = "page") Integer page, @RequestParam(name = "size") Integer size, @RequestParam(name = "keyword") String keyword){
-        return transactionService.getTransactionById(PageRequest.of(page,size), keyword);
+        return transactionService.getTransactionById(PageRequest.of(page-1,size), keyword);
+    }
+    @GetMapping("/transactions_search_by_date")
+    public Page<Transaction> getAllTransactionsByDate(@RequestParam(name = "page") Integer page, @RequestParam(name = "size") Integer size, @RequestParam(name = "date") Date date){
+        return transactionService.getTransactionByDate(PageRequest.of(page-1,size), date);
     }
     @PostMapping("/transaction_post")
     public Transaction saveTrx(@RequestBody Transaction transaction){

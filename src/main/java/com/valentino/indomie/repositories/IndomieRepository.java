@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IndomieRepository extends JpaRepository<Indomie, String> {
-    Page<Indomie> findAllByName(Pageable pageable, String keyword);
+    Page<Indomie> findAllByNameContains(String keyword, Pageable pageable);
 }

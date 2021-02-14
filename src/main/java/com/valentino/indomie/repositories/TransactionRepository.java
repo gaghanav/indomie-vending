@@ -10,8 +10,8 @@ import java.sql.Date;
 
 public interface TransactionRepository extends JpaRepository<Transaction, String> {
 
-    @Query(value="select * from transactions t where t.id like %:id%", nativeQuery = true)
-    Page<Transaction> findAllById(Pageable pageable, String id);
-    @Query(value = "select * from transactions t where t.trxDate=:date", nativeQuery = true)
-    Page<Transaction> findAllByTrxDate(Pageable pageable, Date date);
+    @Query(value="select * from transaction  where id like %:keyword%", nativeQuery = true)
+    Page<Transaction> findAllById(String keyword, Pageable pageable);
+    @Query(value = "select * from transaction where trxDate=:date", nativeQuery = true)
+    Page<Transaction> findAllByTrxDate(Date date, Pageable pageable);
 }
